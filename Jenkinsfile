@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.8.1-adoptopenjdk-11' 
+            image 'frekele/ant:latest' 
             args '-u root -v /root/.m2:/root/.m2' 
         }
     }
