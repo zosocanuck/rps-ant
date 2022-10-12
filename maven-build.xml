@@ -108,69 +108,6 @@
   </target>
 
   <!-- ====================================================================== -->
-  <!-- Run all tests                                                          -->
-  <!-- ====================================================================== -->
-
-  <target name="test" 
-          depends="compile-tests, junit-missing" 
-          unless="junit.skipped" 
-          description="Run the test cases">
-    <mkdir dir="${maven.test.reports}"/>
-    <junit printSummary="yes" haltonerror="false" haltonfailure="false" fork="true" dir=".">
-      <sysproperty key="basedir" value="."/>
-      <formatter type="xml"/>
-      <formatter type="plain" usefile="false"/>
-      <classpath>
-        <path refid="build.test.classpath"/>
-        <pathelement location="${maven.build.outputDir}"/>
-        <pathelement location="${maven.build.testOutputDir}"/>
-      </classpath>
-      <batchtest todir="${maven.test.reports}" unless="test">
-        <fileset dir="${maven.build.testDir.0}">
-          <include name="**/Test*.java"/>
-          <include name="**/*Test.java"/>
-          <include name="**/*TestCase.java"/>
-          <exclude name="**/*Abstract*Test.java"/>
-        </fileset>
-      </batchtest>
-      <batchtest todir="${maven.test.reports}" if="test">
-        <fileset dir="${maven.build.testDir.0}">
-          <include name="**/${test}.java"/>
-          <exclude name="**/*Abstract*Test.java"/>
-        </fileset>
-      </batchtest>
-    </junit>
-  </target>
-
-  <target name="test-junit-present">
-    <available classname="junit.framework.Test" property="junit.present" classpathref="build.test.classpath"/>
-  </target>
-
-  <target name="test-junit-status" 
-          depends="test-junit-present">
-    <condition property="junit.missing">
-      <and>
-        <isfalse value="${junit.present}"/>
-        <isfalse value="${maven.test.skip}"/>
-      </and>
-    </condition>
-    <condition property="junit.skipped">
-      <or>
-        <isfalse value="${junit.present}"/>
-        <istrue value="${maven.test.skip}"/>
-      </or>
-    </condition>
-  </target>
-
-  <target name="junit-missing" 
-          depends="test-junit-status" 
-          if="junit.missing">
-    <echo>=================================== WARNING ===================================</echo>
-    <echo> JUnit is not present in the test classpath or your $ANT_HOME/lib directory. Tests not executed.</echo>
-    <echo>===============================================================================</echo>
-  </target>
-
-  <!-- ====================================================================== -->
   <!-- Javadoc target                                                         -->
   <!-- ====================================================================== -->
 
