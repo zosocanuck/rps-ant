@@ -116,7 +116,7 @@
           unless="junit.skipped" 
           description="Run the test cases">
     <mkdir dir="${maven.test.reports}"/>
-    <junit printSummary="yes" haltonerror="true" haltonfailure="true" fork="true" dir=".">
+    <junit printSummary="yes" haltonerror="false" haltonfailure="false" fork="true" dir=".">
       <sysproperty key="basedir" value="."/>
       <formatter type="xml"/>
       <formatter type="plain" usefile="false"/>
