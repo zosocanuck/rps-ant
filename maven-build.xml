@@ -217,12 +217,12 @@
   <!-- Sign package                                                         -->
   <!-- ====================================================================== -->
 
-  <!-- <target name="sign" depends="compile,test" description="sign the application">
+  <target name="sign" depends="compile,test" description="sign the application">
     <signjar jar="${maven.build.dir}/${maven.build.finalName}.war"
          keystore="NONE" alias="vsign-rsa2048-cert" storetype="PKCS11" storepass="NONE" providerClass="sun.security.pkcs11.SunPKCS11" providerArg="/root/venafipkcs11.txt" 
     />
   </target>
-  -->
+  
 
   <!-- ====================================================================== -->
   <!-- A dummy target for the package named after the type it creates         -->
