@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh 'ant clean compile test package war sign' 
+                sh 'ant clean compile package war sign' 
             }
         }
     }
